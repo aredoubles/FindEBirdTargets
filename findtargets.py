@@ -1,5 +1,6 @@
 #from ebird import AvianKnowledge
 from ebird import EBird
+import pprint
 
 #ak = AvianKnowledge()
 ebird = EBird()
@@ -60,7 +61,7 @@ def GetSites(spp1, spp2):
     return bestloc
 
 thesites = GetSites(spp1, spp2)
-print thesites
+pprint.pprint(thesites)
 
 '''
 Need to extend inputs for 3+ species, using **kwargs
