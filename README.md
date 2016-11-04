@@ -20,6 +20,12 @@ We can use the eBird API to find out!
 
 ## Todo
 
-* Should support 3+ species, probably using a **kwargs input
+* Should support 3+ species, probably using a `**kwargs` input
 * Might want to shorten the output dict in some way
 * Down the road, a webapp would be awesome
+
+## Footnotes
+* Roger Shaw
+* Currently a fellow at Insight Health Data Science, transitioning from academia into a career in data science
+* This is just a side project, for playing around with the eBird API, and possibly another webapp
+* As can be inferred from this project's goals, I'm an avid birder in my spare time, and so this project was borne out of my own need for this tool!
