@@ -16,12 +16,10 @@ We can use the eBird API to find out!
 
 ## Current progress
 
-* The `findtargets.py` file is more like a notebook, not a script
-    * Shows locations in Massachusetts where both Lapland Longspurs and Snow Buntings have been seen in the past 30 days
+* The `findtargets.py` file is now a script, where you input two species, and it returns a dict of which locations one or both have been seen at most often, in Massachusetts.
 
 ## Todo
 
-* Massage notebook-style code into an actual script, with inputs
-    * Should support 3+ species, probably using a **kwargs input
-* Figure out what to do when there are no 'ideal best' locations (find next best somehow)
+* Should support 3+ species, probably using a **kwargs input
+* Might want to shorten the output dict in some way
 * Down the road, a webapp would be awesome
