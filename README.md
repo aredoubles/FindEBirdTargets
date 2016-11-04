@@ -19,23 +19,18 @@ We can use the eBird API to find out!
 * The `findtargets.py` file is now a script, where you input two species, and it returns a dict of which locations one or both have been seen at most often, in Massachusetts.
 
 ```
-python findtargets.py
+> python findtargets.py
 Species 1: 'Alca torda'
 Species 2: 'Plectrophenax nivalis'
 ```
 ```
-[(u'Race Point Beach, Provincetown', 2),
- (u'Parker River NWR', 2),
- (u'Race Point', 2),
- (u'Great Meadows NWR--Concord Unit', 2),
- (u"Andrew's Point, Rockport", 2),
- (u'Salem Wharf and Harbor', 1),
- (u'High Head, Pilgrim Heights', 1),
- (u'Quabbin Park', 1),
- (u'Indian Lake, Becket (restricted access)', 1),
- (u'US-Massachusetts-Salisbury-Z Street - 42.826x-70.82', 1),
- (u'Wachusett Reservoir - Gates 36 - 38', 1),
- ...
+Location                                          Combined sightings
+Race Point Beach, Provincetown                    2
+Parker River NWR                                  2
+Race Point                                        2
+Great Meadows NWR--Concord Unit                   2
+Andrew's Point, Rockport                          2
+Salem Wharf and Harbor                            1
  ```
 
 ## Todo

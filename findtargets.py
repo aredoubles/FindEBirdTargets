@@ -1,6 +1,7 @@
 #from ebird import AvianKnowledge
 from ebird import EBird
 import pprint
+import pandas as pd
 
 #ak = AvianKnowledge()
 ebird = EBird()
@@ -53,15 +54,19 @@ def GetSites(spp1, spp2):
     # How to sort countloc by highest value?
     bestloc = sorted(countloc.items(), key=lambda x: x[1], reverse=True)
 
+    locdf = pd.DataFrame(bestloc)
+    locdf.columns = ['Location', 'Combined sightings']
+    locdf = locdf.set_index('Location')
+
     # 'Set' with an ampersand returns shared values!!!
     #both = set(laplandlocs) & set(snowlocs)
     # Analagous to:
     #both = set(laplandlocs).intersection(snowlocs)
 
-    return bestloc
+    return locdf
 
 thesites = GetSites(spp1, spp2)
-pprint.pprint(thesites)
+pprint.pprint(thesites.head(6))
 
 '''
 Need to extend inputs for 3+ species, using **kwargs
