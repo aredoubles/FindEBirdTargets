@@ -1,7 +1,7 @@
-from ebird import AvianKnowledge
+#from ebird import AvianKnowledge
 from ebird import EBird
 
-ak = AvianKnowledge()
+#ak = AvianKnowledge()
 ebird = EBird()
 
 '''
@@ -10,24 +10,58 @@ subnational2 is the county level
 '''
 
 #print ak.subnational1_list({'countryCode': 'US'})
-lapland = ebird.recent_species_observations_region('subnational1', 'US-MA', 'Calcarius lapponicus')
 
-laplandrecs = {}
-for rec in lapland:
-    laplandrecs[rec['obsDt']] = rec['locName']
+spp1 = input('Species 1: ')
+spp2 = input('Species 2: ')
 
-laplandlocs = list(laplandrecs.values())
+def GetSites(spp1, spp2):
 
+    recs1 = ebird.recent_species_observations_region('subnational1', 'US-MA', spp1)
+    recs2 = ebird.recent_species_observations_region('subnational1', 'US-MA', spp2)
 
-snowbun = ebird.recent_species_observations_region('subnational1', 'US-MA', 'Plectrophenax nivalis')
+    locs1 = {}
+    locs2 = {}
+    for rec in recs1:
+        locs1[rec['obsDt']] = rec['locName']
+    for rec in recs2:
+        locs2[rec['obsDt']] = rec['locName']
 
-snowrecs = {}
-for rec in snowbun:
-    snowrecs[rec['obsDt']] = rec['locName']
+    '''
+    ## This is where I evaluate the best sites
+    * Could count how many times a location shows up amongst both lists
+        * But one species could be super-reliable at one site and bias that
+            * Maybe that's okay?
+    * Purely check for intersection of sets, as before
+        * Doesn't factor in reliability, but maybe that's okay?
+    * What other metrics would make sense?
+    * For now, let's go with the sheer count
+    '''
 
-snowlocs = list(snowrecs.values())
+    countloc = {}
+    for rec in locs1.values():
+        if rec in countloc:
+            countloc[rec] += 1
+        else:
+            countloc[rec] = 1
+    for rec in locs2.values():
+        if rec in countloc:
+            countloc[rec] += 1
+        else:
+            countloc[rec] = 1
 
-# 'Set' with an ampersand returns shared values!!!
-both = set(laplandlocs) & set(snowlocs)
+    # How to sort countloc by highest value?
+    bestloc = sorted(countloc.items(), key=lambda x: x[1], reverse=True)
 
-# What if I give 3+ species, and the best location only has no greater than 2 of them?
+    # 'Set' with an ampersand returns shared values!!!
+    #both = set(laplandlocs) & set(snowlocs)
+    # Analagous to:
+    #both = set(laplandlocs).intersection(snowlocs)
+
+    return bestloc
+
+thesites = GetSites(spp1, spp2)
+print thesites
+
+'''
+Need to extend inputs for 3+ species, using **kwargs
+'''
