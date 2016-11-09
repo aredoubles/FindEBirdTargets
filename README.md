@@ -25,7 +25,7 @@ Species 2: 'Spizelloides arborea'
 US State: 'MA'
 ```
 ```
-                                   Plectrophenax nivalis    Spizelloides arborea    Total Sightings
+                                            Snow Bunting   American Tree Sparrow    Total Sightings
 Location
 Great Meadows NWR--Concord Unit                        2                       1                  3
 UMass Marine Station                                   1                       1                  2
@@ -38,6 +38,7 @@ Scusset Beach State Reservation                        1                       1
 ## Todo
 
 * Should support 3+ species, probably using a `**kwargs` input
+* API only supports input of scientific names, but maybe I could use a lookup table to allow for input of common names as well
 * Would be great to support other geographic scales, but the API makes that slightly tricky, not high priority
 * Down the road, a webapp would be awesome
 

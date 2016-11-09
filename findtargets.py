@@ -29,12 +29,14 @@ def GetSites(spp1, spp2):
         locs1[rec['obsDt']] = rec['locName']
     for rec in recs2:
         locs2[rec['obsDt']] = rec['locName']
+    com1 = recs1[0]['comName']
+    com2 = recs2[0]['comName']
 
     countloc1 = pd.DataFrame(itemfreq(locs1.values()))
     countloc2 = pd.DataFrame(itemfreq(locs2.values()))
 
-    countloc1.columns = ['Location', spp1]
-    countloc2.columns = ['Location', spp2]
+    countloc1.columns = ['Location', com1]
+    countloc2.columns = ['Location', com2]
 
     ''''''
     # Figure out how to merge these two tables
@@ -43,8 +45,8 @@ def GetSites(spp1, spp2):
     # Need to change NAs to zeros
     bestloc = bestloc.fillna(0)
     # Make sure the sightings counts are numeric
-    bestloc[[spp1, spp2]] = bestloc[[spp1, spp2]].apply(pd.to_numeric)
-    bestloc['Total Sightings'] = bestloc[spp1] + bestloc[spp2]
+    bestloc[[com1, com2]] = bestloc[[com1, com2]].apply(pd.to_numeric)
+    bestloc['Total Sightings'] = bestloc[com1] + bestloc[com2]
     bestloc = bestloc.sort_values(by='Total Sightings', ascending=0)
 
     bestloc = bestloc.set_index('Location')
