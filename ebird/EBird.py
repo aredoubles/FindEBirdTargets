@@ -54,7 +54,7 @@ class EBird(object):
 
 
   def recent_species_observations_region(self, rtype, r, sci, options={}):
-    params = {'r': r, 'rtype': rtype, 'sci': sci, 'fmt': 'json'}
+    params = {'r': r, 'rtype': rtype, 'sci': sci, 'fmt': 'json', 'back': 30, 'maxResults' : 300}
     params.update(options)
     return self.handle_response(requests.get(self.base_api_url + '/data/obs/region_spp/recent', params=params))
 

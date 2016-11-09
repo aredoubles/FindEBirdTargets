@@ -16,7 +16,7 @@ We can use the eBird API to find out!
 
 ## Current progress
 
-* The `findtargets.py` file is now a script, where you input two species and US state, and it returns a table of which locations they have been seen at, sorted by the number of total sightings.
+* The `findtargets.py` file is now a script, where you input two species and US state, and it returns a table of which locations they have been seen at in the past 30 days, sorted by the number of total sightings.
 
 ```
 > python findtargets.py
