@@ -2,6 +2,7 @@
 from ebird import EBird
 import pprint
 import pandas as pd
+from scipy.stats import itemfreq
 
 #ak = AvianKnowledge()
 ebird = EBird()
@@ -15,11 +16,12 @@ subnational2 is the county level
 
 spp1 = input('Species 1: ')
 spp2 = input('Species 2: ')
+state = input('US State: ')
 
 def GetSites(spp1, spp2):
-
-    recs1 = ebird.recent_species_observations_region('subnational1', 'US-MA', spp1)
-    recs2 = ebird.recent_species_observations_region('subnational1', 'US-MA', spp2)
+    encstate = 'US-' + state
+    recs1 = ebird.recent_species_observations_region('subnational1', encstate, spp1)
+    recs2 = ebird.recent_species_observations_region('subnational1', encstate, spp2)
 
     locs1 = {}
     locs2 = {}
@@ -28,42 +30,26 @@ def GetSites(spp1, spp2):
     for rec in recs2:
         locs2[rec['obsDt']] = rec['locName']
 
-    '''
-    ## This is where I evaluate the best sites
-    * Could count how many times a location shows up amongst both lists
-        * But one species could be super-reliable at one site and bias that
-            * Maybe that's okay?
-    * Purely check for intersection of sets, as before
-        * Doesn't factor in reliability, but maybe that's okay?
-    * What other metrics would make sense?
-    * For now, let's go with the sheer count
-    '''
+    countloc1 = pd.DataFrame(itemfreq(locs1.values()))
+    countloc2 = pd.DataFrame(itemfreq(locs2.values()))
 
-    countloc = {}
-    for rec in locs1.values():
-        if rec in countloc:
-            countloc[rec] += 1
-        else:
-            countloc[rec] = 1
-    for rec in locs2.values():
-        if rec in countloc:
-            countloc[rec] += 1
-        else:
-            countloc[rec] = 1
+    countloc1.columns = ['Location', spp1]
+    countloc2.columns = ['Location', spp2]
 
-    # How to sort countloc by highest value?
-    bestloc = sorted(countloc.items(), key=lambda x: x[1], reverse=True)
+    ''''''
+    # Figure out how to merge these two tables
+    # http://pandas.pydata.org/pandas-docs/stable/merging.html
+    bestloc = pd.merge(countloc1, countloc2, on='Location', how='outer', copy=True)
+    # Need to change NAs to zeros
+    bestloc = bestloc.fillna(0)
+    # Make sure the sightings counts are numeric
+    bestloc[[spp1, spp2]] = bestloc[[spp1, spp2]].apply(pd.to_numeric)
+    bestloc['Total Sightings'] = bestloc[spp1] + bestloc[spp2]
+    bestloc = bestloc.sort_values(by='Total Sightings', ascending=0)
 
-    locdf = pd.DataFrame(bestloc)
-    locdf.columns = ['Location', 'Combined sightings']
-    locdf = locdf.set_index('Location')
+    bestloc = bestloc.set_index('Location')
 
-    # 'Set' with an ampersand returns shared values!!!
-    #both = set(laplandlocs) & set(snowlocs)
-    # Analagous to:
-    #both = set(laplandlocs).intersection(snowlocs)
-
-    return locdf
+    return bestloc
 
 thesites = GetSites(spp1, spp2)
 pprint.pprint(thesites.head(6))

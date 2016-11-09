@@ -16,27 +16,29 @@ We can use the eBird API to find out!
 
 ## Current progress
 
-* The `findtargets.py` file is now a script, where you input two species, and it returns a dict of which locations one or both have been seen at most often, in Massachusetts.
+* The `findtargets.py` file is now a script, where you input two species and US state, and it returns a table of which locations they have been seen at, sorted by the number of total sightings.
 
 ```
 > python findtargets.py
-Species 1: 'Alca torda'
-Species 2: 'Plectrophenax nivalis'
+Species 1: 'Plectrophenax nivalis'
+Species 2: 'Spizelloides arborea'
+US State: 'MA'
 ```
 ```
-Location                                          Combined sightings
-Race Point Beach, Provincetown                    2
-Parker River NWR                                  2
-Race Point                                        2
-Great Meadows NWR--Concord Unit                   2
-Andrew's Point, Rockport                          2
-Salem Wharf and Harbor                            1
+                                   Plectrophenax nivalis    Spizelloides arborea    Total Sightings
+Location
+Great Meadows NWR--Concord Unit                        2                       1                  3
+UMass Marine Station                                   1                       1                  2
+Parker River NWR                                       1                       1                  2
+Salisbury Beach State Reservation                      1                       1                  2
+Sandy Neck                                             1                       1                  2
+Scusset Beach State Reservation                        1                       1                  2
  ```
 
 ## Todo
 
 * Should support 3+ species, probably using a `**kwargs` input
-* Might want to shorten the output dict in some way
+* Would be great to support other geographic scales, but the API makes that slightly tricky, not high priority
 * Down the road, a webapp would be awesome
 
 ## Footnotes
