@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Find eBird Targets by aredoubles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Find eBird Targets</h1>
+      <h2 class="project-tagline">Using the eBird API to find locations that have recently hosted multiple target bird species</h2>
+      <a href="https://github.com/aredoubles/FindEBirdTargets" class="btn">View on GitHub</a>
+      <a href="https://github.com/aredoubles/FindEBirdTargets/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/aredoubles/FindEBirdTargets/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="finding-ebird-targets" class="anchor" href="#finding-ebird-targets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Finding eBird Targets</h1>
+
+<p><a href="https://github.com/carsonmcdonald/python-ebird-wrapper">Python eBird Wrapper gratiously forked from Carson McDonald</a></p>
+
+<p>I just moved to New England. There's lots of birds that I want to see! With so many targets, where can I go to find many/most of them at once?</p>
+
+<p>We can use the eBird API to find out!</p>
+
+<h2>
+<a id="goals" class="anchor" href="#goals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Goals</h2>
+
+<ul>
+<li>User provides a list of bird species, and a US state</li>
+<li>Script returns a list of locations where those bird species have been seen recently, within the given region
+
+<ul>
+<li>eBird API used to assess where each species has been seen recently</li>
+<li>Location lists then compared within Python</li>
+</ul>
+</li>
+<li>Could be implemented as a script, or even as a web-app down the line</li>
+</ul>
+
+<h2>
+<a id="current-progress" class="anchor" href="#current-progress" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Current progress</h2>
+
+<ul>
+<li>The <code>findtargets.py</code> file is now a script, where you input two species and US state, and it returns a table of which locations they have been seen at in the past 30 days, sorted by the number of total sightings.</li>
+</ul>
+
+<pre><code>&gt; python findtargets.py
+Species 1: 'Plectrophenax nivalis'
+Species 2: 'Spizelloides arborea'
+US State: 'MA'
+</code></pre>
+
+<pre><code>                                            Snow Bunting   American Tree Sparrow    Total Sightings
+Location
+Great Meadows NWR--Concord Unit                        2                       1                  3
+UMass Marine Station                                   1                       1                  2
+Parker River NWR                                       1                       1                  2
+Salisbury Beach State Reservation                      1                       1                  2
+Sandy Neck                                             1                       1                  2
+Scusset Beach State Reservation                        1                       1                  2
+</code></pre>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Todo</h2>
+
+<ul>
+<li>Should support 3+ species, probably using a <code>**kwargs</code> input</li>
+<li>API only supports input of scientific names, but maybe I could use a lookup table to allow for input of common names as well</li>
+<li>Would be great to support other geographic scales, but the API makes that slightly tricky, not high priority</li>
+<li>Down the road, a webapp would be awesome</li>
+</ul>
+
+<h2>
+<a id="footnotes" class="anchor" href="#footnotes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Footnotes</h2>
+
+<ul>
+<li>Roger Shaw</li>
+<li>Currently a fellow at Insight Health Data Science, transitioning from academia into a career in data science</li>
+<li>This is just a side project, for playing around with the eBird API, and the usage of <code>**kwargs</code>. Making a new webapp would be fun practice too.</li>
+<li>As can be inferred from this project's goals, I'm an avid birder in my spare time, and so this project was borne out of my own need for this tool!</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/aredoubles/FindEBirdTargets">Find eBird Targets</a> is maintained by <a href="https://github.com/aredoubles">aredoubles</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
