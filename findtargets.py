@@ -3,6 +3,10 @@ from ebird import EBird
 import pprint
 import pandas as pd
 from scipy.stats import itemfreq
+# For query species name database
+from sqlalchemy import create_engine
+from sqlalchemy_utils import database_exists, create_database
+import psycopg2
 
 #ak = AvianKnowledge()
 ebird = EBird()
@@ -14,9 +18,14 @@ subnational2 is the county level
 
 # print ak.subnational1_list({'countryCode': 'US'})
 
-spp1 = input('Species 1: ')
-spp2 = input('Species 2: ')
+inp1 = input('Species 1: ')
+inp2 = input('Species 2: ')
 state = input('US State: ')
+
+specieslist = pd.read_csv('eBird_Taxonomy_v2016_9Aug2016.csv')
+specieslist = specieslist.set_index('PRIMARY_COM_NAME')
+spp1 = specieslist.ix[inp1]['SCI_NAME']
+spp2 = specieslist.ix[inp2]['SCI_NAME']
 
 
 def GetSites(spp1, spp2):
@@ -75,6 +84,7 @@ def SiteDupes(rec):
     Any way to make this checking more generalizable, rather than rely on local MA knowledge?
     Check for general 'startswith' patterns?
     Has to be consistent across species
+    Some 'startswith' SHOULDN'T be joined though, like large national parks, etc.
     '''
 
 thesites = GetSites(spp1, spp2)
