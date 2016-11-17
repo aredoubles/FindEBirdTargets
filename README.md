@@ -46,9 +46,11 @@ Salisbury Beach State Reservation              1                     1          
 ## Todo
 
 - Making this into a web-app would be great! Much more user-friendly that way.
+    - Would allow for the locations to be shown on a map, or at least links to the eBird hotspots (if applicable)
 - Similar locations are being manually merged right now, based on local knowledge. Need to think about whether it's possible to automate in some way, or if it will always need to be curated.
     - Interactive merging would be even better, but beyond the scope of my current UI skills
 - Would be great to support other geographic scales (counties, whole countries, etc.), but the API makes that slightly tricky, not high priority
+    - Currently only works for the US, sorry! International support would probably be pretty simple, I just haven't looked into it yet
 - Would be nice to support entry of scientific names as well, but generally not used by recreational birders, not high priority
 
 ## Footnotes

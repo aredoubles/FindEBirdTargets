@@ -12,8 +12,6 @@ The forked eBird API repo seems to only support 'subnational1', which is the sta
 subnational2 is the county level
 '''
 
-# print ak.subnational1_list({'countryCode': 'US'})
-
 
 def WhatWhere():
     print '''Enter the names of species that you're interested in, separated by commas \n(ex: Snow Bunting, American Tree Sparrow, Horned Lark)'''
@@ -60,14 +58,16 @@ def GetSites(inputs):
             countloc1[entry] = countloc1[entry].apply(int)      # Convert to integers (not working?)
 
             # Merge each species into previous species' tables
-            if bigdf.empty: bigdf = countloc1.copy()
+            if bigdf.empty:
+                bigdf = countloc1.copy()
             else:
                 bigdf = pd.merge(bigdf, countloc1, on='Location',
-                                   how='outer', copy=True)
+                                 how='outer', copy=True)
 
     bigdf = bigdf.fillna(0)        # Replace NAs with zeroes
     bigdf = bigdf.set_index('Location')
-    bigdf['Total Sightings'] = bigdf.sum(axis=1)    # 'Total sightings' column sums across all species, that's our metric for 'best'
+    # 'Total sightings' column sums across all species, that's our metric for 'best'
+    bigdf['Total Sightings'] = bigdf.sum(axis=1)
     bigdf = bigdf.sort_values(by='Total Sightings', ascending=0)
 
     bestloc = bigdf
@@ -102,7 +102,7 @@ def main():
     thesites = GetSites(inputs)
     print '''Here's where these species have been seen in the past 30 days:\n'''
     pprint.pprint(thesites.head(7))
-    #thesites.to_csv('output.csv')
+    # thesites.to_csv('output.csv')      # If you want the output saved onto your computer
 
 
 main()
