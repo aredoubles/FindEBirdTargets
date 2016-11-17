@@ -1,10 +1,10 @@
 # Finding eBird Targets
 
-[Python eBird Wrapper gratiously forked from Carson McDonald](https://github.com/carsonmcdonald/python-ebird-wrapper)
-
 I just moved to New England. There's lots of birds that I want to see! With so many targets, where can I go to find many/most of them at once?
 
-We can use the eBird API to find out!
+For finding a single species, the eBird website makes it easy with its [Species Maps](http://ebird.org/ebird/map/snobun?neg=true&env.minX=&env.minY=&env.maxX=&env.maxY=&zh=false&gp=false&ev=Z&mr=1-12&bmo=1&emo=12&yr=all&byr=1900&eyr=2016). But if there's multiple species you're interested in, it takes a lot of mental organizatation to keep everything straight.
+
+So I built a tool to do it all for me!
 
 ## Goals
 
@@ -42,6 +42,9 @@ Race Point                                     2                     1          
 Great Meadows NWR--Concord Unit                2                     1            1               4
 Salisbury Beach State Reservation              1                     1            1               3
 ```
+Success! I found all three of these species together with the help of this script! Here's a photo I took of one of the Snow Buntings:
+![Snow Bunting](https://c2.staticflickr.com/6/5639/30899543702_011276cc0b_z_d.jpg)
+
 
 ## Todo
 
@@ -59,3 +62,4 @@ Salisbury Beach State Reservation              1                     1          
 - Currently a fellow at Insight Health Data Science, transitioning from academia into a career in data science
 - This is just a side project, for playing around with the eBird API. Making a new webapp would be fun practice too.
 - As can be inferred from this project's goals, I'm an avid birder in my spare time, and so this project was borne out of my own need for this tool!
+- [Python eBird Wrapper gratiously forked from Carson McDonald](https://github.com/carsonmcdonald/python-ebird-wrapper)
