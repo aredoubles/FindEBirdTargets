@@ -20,6 +20,7 @@ We can use the eBird API to find out!
 
 - The `findtargets.py` file is now a script, where you input as many species as you'd like, plus a US state, and it returns a table of which locations they have been seen at in the past 30 days, sorted by the number of total sightings.
 - Allows for input of common names, but the API requires scientific names, so lookup is performed from the [eBird/Clements checklist](http://www.birds.cornell.edu/clementschecklist/download/).
+- To run, clone/download this repository, then navigate to that folder from the command line.
 
 ```
 > python findtargets.py
@@ -30,6 +31,8 @@ US State: MA
 ```
 
 ```
+Here's where these species have been seen in the past 30 days:
+
                                     Snow Bunting American Tree Sparrow  Horned Lark Total Sightings
 Location
 Parker River NWR                               9                     6            6              21
@@ -42,11 +45,11 @@ Salisbury Beach State Reservation              1                     1          
 
 ## Todo
 
+- Making this into a web-app would be great! Much more user-friendly that way.
 - Similar locations are being manually merged right now, based on local knowledge. Need to think about whether it's possible to automate in some way, or if it will always need to be curated.
     - Interactive merging would be even better, but beyond the scope of my current UI skills
-- Would be great to support other geographic scales, but the API makes that slightly tricky, not high priority
+- Would be great to support other geographic scales (counties, whole countries, etc.), but the API makes that slightly tricky, not high priority
 - Would be nice to support entry of scientific names as well, but generally not used by recreational birders, not high priority
-- Down the road, a webapp would be awesome
 
 ## Footnotes
 

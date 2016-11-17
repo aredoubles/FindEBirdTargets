@@ -100,6 +100,7 @@ def SiteDupes(rec):
 def main():
     inputs = WhatWhere()
     thesites = GetSites(inputs)
+    print '''Here's where these species have been seen in the past 30 days:\n'''
     pprint.pprint(thesites.head(7))
     #thesites.to_csv('output.csv')
 
