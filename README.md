@@ -20,7 +20,7 @@ So I built a tool to do it all for me!
 
 - The `findtargets.py` file is now a script, where you input as many species as you'd like, plus a US state, and it returns a table of which locations they have been seen at in the past 30 days, sorted by the number of total sightings.
 - Allows for input of common names, but the API requires scientific names, so lookup is performed from the [eBird/Clements checklist](http://www.birds.cornell.edu/clementschecklist/download/).
-- To run, clone/download this repository, then navigate to that folder from the command line.
+- To run, clone/download this repository, then navigate to that folder from the command line, and run the script. Here's an example of what you'll see:
 
 ```
 > python findtargets.py
@@ -42,7 +42,8 @@ Race Point                                     2                     1          
 Great Meadows NWR--Concord Unit                2                     1            1               4
 Salisbury Beach State Reservation              1                     1            1               3
 ```
-Success! I found all three of these species together with the help of this script! Here's a photo I took of one of the Snow Buntings:
+Success! I found all three of these species together with the help of this script! Here's a photo of one of the Snow Buntings that I saw:
+
 ![Snow Bunting](https://c2.staticflickr.com/6/5639/30899543702_011276cc0b_z_d.jpg)
 
 
@@ -51,8 +52,8 @@ Success! I found all three of these species together with the help of this scrip
 - Making this into a web-app would be great! Much more user-friendly that way.
     - Would allow for the locations to be shown on a map, or at least links to the eBird hotspots (if applicable)
 - Similar locations are being manually merged right now, based on local knowledge. Need to think about whether it's possible to automate in some way, or if it will always need to be curated.
-    - Interactive merging would be even better, but beyond the scope of my current UI skills
-- Would be great to support other geographic scales (counties, whole countries, etc.), but the API makes that slightly tricky, not high priority
+    - Interactive merging would be even better, but well beyond the scope of my current UI skills
+- Would be great to support other geographic scales (counties, whole countries, etc.), but the API (wrapper) makes that slightly tricky, not high priority
     - Currently only works for the US, sorry! International support would probably be pretty simple, I just haven't looked into it yet
 - Would be nice to support entry of scientific names as well, but generally not used by recreational birders, not high priority
 
@@ -62,4 +63,4 @@ Success! I found all three of these species together with the help of this scrip
 - Currently a fellow at Insight Health Data Science, transitioning from academia into a career in data science
 - This is just a side project, for playing around with the eBird API. Making a new webapp would be fun practice too.
 - As can be inferred from this project's goals, I'm an avid birder in my spare time, and so this project was borne out of my own need for this tool!
-- [Python eBird Wrapper gratiously forked from Carson McDonald](https://github.com/carsonmcdonald/python-ebird-wrapper)
+- [Python eBird API Wrapper gratiously forked from Carson McDonald](https://github.com/carsonmcdonald/python-ebird-wrapper)

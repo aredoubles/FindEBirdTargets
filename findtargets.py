@@ -3,6 +3,7 @@ from ebird import EBird
 import pprint
 import pandas as pd
 from scipy.stats import itemfreq
+import datetime
 
 #ak = AvianKnowledge()
 ebird = EBird()
@@ -96,13 +97,25 @@ def SiteDupes(rec):
     Some 'startswith' SHOULDN'T be joined though, like large national parks, etc.
     '''
 
+def SaveResults(inputs, thesites):
+    # Make a filename: 'Spp1Spp2Spp3Date.csv'
+    del inputs['State']
+    sppstr = ''
+    for spp in inputs.keys():
+        sppstr = sppstr + spp
+    sppstr = sppstr.replace(' ', '')
+
+    now = datetime.datetime.now()
+    tddate = now.strftime('%Y-%m-%d')
+
+    fname = '{}{}{}{}'.format(tddate, '-', sppstr, '.csv')
+    thesites.to_csv(fname)      # If you want the output saved onto your computer
 
 def main():
     inputs = WhatWhere()
     thesites = GetSites(inputs)
     print '''Here's where these species have been seen in the past 30 days:\n'''
     pprint.pprint(thesites.head(7))
-    # thesites.to_csv('output.csv')      # If you want the output saved onto your computer
-
+    SaveResults(inputs, thesites)
 
 main()
